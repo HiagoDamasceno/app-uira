@@ -1,50 +1,71 @@
-# Welcome to your Expo app 👋
+# Uirapuru - App de Inclusão no Mercado de Trabalho
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Descrição
 
-## Get started
+O Uirapuru é um aplicativo desenvolvido para apoiar jovens na sua jornada de integração ao mercado de trabalho. O objetivo do aplicativo é fornecer ferramentas, recursos e orientações para ajudar esses jovens a se prepararem para o primeiro emprego, através de capacitação, informações sobre vagas e dicas de como se destacar no processo seletivo.
 
-1. Install dependencies
+## Funcionalidade da Primeira Tela
 
+A primeira tela do aplicativo apresenta uma interface simples e amigável para os usuários, com os seguintes elementos principais:
+
+1. **Logo da ONG**: O logotipo da Uirapuru é exibido na parte central da tela para reforçar a identidade visual do projeto.
+2. **Botões de Ação**:
+   - **Login**: Permite ao usuário acessar sua conta já existente.
+   - **Cadastrar**: Oferece a opção para os novos usuários se registrarem no sistema.
+   - **Saiba Mais**: Direciona o usuário para mais informações sobre como a ONG ajuda na inserção de jovens no mercado de trabalho.
+3. **Mensagem de Boas-vindas**: Um título com a saudação "Bem-vindo ao Uirapuru" e uma descrição breve convidando os usuários a se juntarem à causa.
+
+## Funcionalidades
+
+- **Login**: Permite que os usuários já cadastrados no aplicativo façam login para acessar suas informações e recursos.
+- **Cadastro**: Novo usuário pode se cadastrar para obter acesso ao conteúdo exclusivo de capacitação e oportunidades de emprego.
+- **Saiba Mais**: Um botão para que os usuários aprendam mais sobre a missão da ONG e como o app pode ajudá-los.
+
+## Tecnologias Utilizadas
+
+- **React Native**: Framework para desenvolvimento de aplicativos móveis.
+- **JavaScript/TypeScript**: Linguagens de programação utilizadas para construir a lógica do aplicativo.
+- **React Navigation**: Para navegação entre as telas do app (futuramente será necessário implementar).
+- **Estilos**: Estilos simples com `StyleSheet` para garantir uma interface amigável e responsiva.
+
+## Como Executar o Projeto
+
+1. Clone o repositório para sua máquina local:
+   ```bash
+   git clone https://github.com/seu-usuario/uirapuru.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd uirapuru
+   ```
+3. Instale as dependências:
    ```bash
    npm install
    ```
+4. Execute o aplicativo:
+   - Para **iOS**:
+     ```bash
+     npx react-native run-ios
+     ```
+   - Para **Android**:
+     ```bash
+     npx react-native run-android
+     ```
 
-2. Start the app
+## Contribuições
 
-   ```bash
-    npx expo start
-   ```
+Contribuições são bem-vindas! Se você deseja colaborar com o projeto, siga os seguintes passos:
 
-In the output, you'll find options to open the app in a
+1. Faça um fork do repositório.
+2. Crie uma branch para a sua feature (`git checkout -b feature/nova-funcionalidade`).
+3. Commit suas mudanças (`git commit -am 'Adicionando nova funcionalidade'`).
+4. Envie para o repositório remoto (`git push origin feature/nova-funcionalidade`).
+5. Abra um pull request.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Licença
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Este projeto está licenciado sob a [MIT License](LICENSE).
 
-## Get a fresh project
+---
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Esse README fornece um resumo claro da funcionalidade e instruções sobre como rodar o projeto, com foco na primeira tela que você criou. Se você quiser adicionar mais informações ou personalizar ainda mais, fique à vontade para me avisar!
