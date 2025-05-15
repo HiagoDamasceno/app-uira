@@ -1,17 +1,18 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import logoJPG from '../assets/images/uirapuru_logo.jpg';
 
 const Home = () => {
   const router = useRouter();
+  const [menuVisible, setMenuVisible] = useState(false);
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Button title="Saiba Mais!" onPress={() => router.push('/saiba_mais')} />
-        <Button title="Cadastrar" onPress={() => router.push('/cadastro')} />
-      </View>
+      <TouchableOpacity style={styles.menuIcon} onPress={() => setMenuVisible(true)}>
+        <Ionicons name="menu" size={32} color="black" />
+      </TouchableOpacity>
 
       <Image source={logoJPG} style={styles.logo} resizeMode="contain" />
 
@@ -20,7 +21,39 @@ const Home = () => {
         Junte-se a nós na construção de um futuro melhor. Descubra como você pode fazer a diferença!
       </Text>
 
-      <Button title="Quem somos" onPress={() => router.push('/quem_somos')} />
+      <Modal animationType="slide" transparent={true} visible={menuVisible}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalMenu}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalTitle}>Menu</Text>
+              <TouchableOpacity onPress={() => setMenuVisible(false)}>
+                <Ionicons name="close" size={28} color="#333" />
+              </TouchableOpacity>
+            </View>
+
+            {[
+              { label: 'Saiba Mais', path: '/saiba_mais' },
+              { label: 'Cadastrar', path: '/cadastro' },
+              { label: 'Quem somos', path: '/quem_somos' },
+              { label: 'Localização', path: '/localizacao' },
+              { label: 'Contato', path: '/contato' },
+              { label: 'Parceiros', path: '/parceiros' },
+              { label: 'Ajuda', path: '/ajuda' },
+            ].map((item, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.menuItem}
+                onPress={() => {
+                  router.push(item.path);
+                  setMenuVisible(false);
+                }}
+              >
+                <Text style={styles.menuItemText}>{item.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -33,13 +66,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     padding: 20,
   },
-  header: {
+  menuIcon: {
     position: 'absolute',
-    top: 20,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
+    top: 40,
+    left: 20,
   },
   logo: {
     width: 150,
@@ -58,6 +88,47 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     color: '#666',
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalMenu: {
+    backgroundColor: 'white',
+    width: '80%',
+    borderRadius: 15,
+    paddingVertical: 20,
+    paddingHorizontal: 25,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  menuItem: {
+    backgroundColor: '#eee',
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  menuItemText: {
+    fontSize: 16,
+    color: '#333',
+    textAlign: 'center',
   },
 });
 

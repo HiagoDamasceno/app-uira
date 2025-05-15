@@ -8,21 +8,44 @@ import {
   Button,
   Linking,
   Alert,
-  Switch
+  Switch,
 } from 'react-native';
 
 const Cadastro = () => {
+  const [nome, setNome] = useState('');
+  const [idade, setIdade] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [escola, setEscola] = useState('');
+  const [motivo, setMotivo] = useState('');
   const [isMenor, setIsMenor] = useState(false);
+
+  // Campos do responsável
+  const [nomeResponsavel, setNomeResponsavel] = useState('');
+  const [telefoneResponsavel, setTelefoneResponsavel] = useState('');
 
   const handleEnviar = () => {
     Alert.alert('Sucesso', 'As informações foram enviadas para a instituição!');
   };
 
   const handleWhatsApp = () => {
-    const mensagem = encodeURIComponent('Olá, gostaria de me cadastrar, como faço?');
-    const telefone = '5511994262805'; // Substitua pelo número oficial da instituição
-    const url = `https://wa.me/${telefone}?text=${mensagem}`;
+    let mensagem = `📋 *Cadastro para Jovem Aprendiz*\n\n`;
+    mensagem += `🧑 Nome: ${nome}\n`;
+    mensagem += `📅 Idade: ${idade}\n`;
+    mensagem += `✉️ Email: ${email}\n`;
+    mensagem += `📞 Telefone: ${telefone}\n`;
+    mensagem += `🏠 Endereço: ${endereco}\n`;
+    mensagem += `🏫 Escola: ${escola || 'Não informado'}\n`;
+    mensagem += `📝 Motivo: ${motivo}\n`;
 
+    if (isMenor) {
+      mensagem += `\n👨‍👩‍👧 *Responsável:*\n`;
+      mensagem += `• Nome: ${nomeResponsavel}\n`;
+      mensagem += `• Telefone: ${telefoneResponsavel}\n`;
+    }
+
+    const url = `https://wa.me/5511994262805?text=${encodeURIComponent(mensagem)}`;
     Linking.openURL(url);
   };
 
@@ -30,17 +53,19 @@ const Cadastro = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Cadastro para Jovem Aprendiz</Text>
 
-      <TextInput style={styles.input} placeholder="Nome completo" />
-      <TextInput style={styles.input} placeholder="Idade" keyboardType="numeric" />
-      <TextInput style={styles.input} placeholder="Email" keyboardType="email-address" />
-      <TextInput style={styles.input} placeholder="Telefone" keyboardType="phone-pad" />
-      <TextInput style={styles.input} placeholder="Endereço" />
-      <TextInput style={styles.input} placeholder="Escola (se estiver estudando)" />
+      <TextInput style={styles.input} placeholder="Nome completo" value={nome} onChangeText={setNome} />
+      <TextInput style={styles.input} placeholder="Idade" keyboardType="numeric" value={idade} onChangeText={setIdade} />
+      <TextInput style={styles.input} placeholder="Email" keyboardType="email-address" value={email} onChangeText={setEmail} />
+      <TextInput style={styles.input} placeholder="Telefone" keyboardType="phone-pad" value={telefone} onChangeText={setTelefone} />
+      <TextInput style={styles.input} placeholder="Endereço" value={endereco} onChangeText={setEndereco} />
+      <TextInput style={styles.input} placeholder="Escola (se estiver estudando)" value={escola} onChangeText={setEscola} />
       <TextInput
         style={[styles.input, styles.multiline]}
         placeholder="Por que deseja participar?"
         multiline
         numberOfLines={4}
+        value={motivo}
+        onChangeText={setMotivo}
       />
 
       <View style={styles.switchContainer}>
@@ -53,9 +78,13 @@ const Cadastro = () => {
       </View>
 
       {isMenor && (
-        <Text style={styles.responsavel}>
-          * Por ser menor de idade, é necessário informar os dados do seu responsável.
-        </Text>
+        <>
+          <Text style={styles.responsavel}>
+            * Por ser menor de idade, é necessário informar os dados do seu responsável.
+          </Text>
+          <TextInput style={styles.input} placeholder="Nome do responsável" value={nomeResponsavel} onChangeText={setNomeResponsavel} />
+          <TextInput style={styles.input} placeholder="Telefone do responsável" keyboardType="phone-pad" value={telefoneResponsavel} onChangeText={setTelefoneResponsavel} />
+        </>
       )}
 
       <View style={styles.button}>
@@ -104,7 +133,7 @@ const styles = StyleSheet.create({
   responsavel: {
     fontSize: 14,
     color: '#d9534f',
-    marginBottom: 15,
+    marginBottom: 10,
   },
   button: {
     marginBottom: 15,
